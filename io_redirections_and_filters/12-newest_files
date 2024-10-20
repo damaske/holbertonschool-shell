@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -Art | tail -n 1
+ls -lt | grep -v '^d' | head -n 11 | cut -d ' ' -f 9-
