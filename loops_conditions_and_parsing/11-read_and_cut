@@ -2,5 +2,5 @@
 # Read /etc/passwd line by line
 while IFS=: read -r user pass uid gid desc home shell
 do
-    echo "$user $uid $home"
+    echo "$user:$uid:$home"
 done < /etc/passwd
