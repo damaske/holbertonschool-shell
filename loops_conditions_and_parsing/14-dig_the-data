@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Group visitors by IP and HTTP code, count occurrences, sort descending
+
+awk '{count[$1" "$9]++} END {for (i in count) print count[i], i}' apache-access.log | sort -rn
