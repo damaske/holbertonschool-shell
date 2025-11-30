@@ -1,12 +1,3 @@
 #!/usr/bin/env bash
-
-for pid_dir in /proc/[0-9]*; do
-    pid=${pid_dir##*/}
-    comm_file="/proc/$pid/comm"
-    if [[ -f "$comm_file" && -r "$comm_file" ]]; then
-        comm=$(cat "$comm_file" 2>/dev/null)
-        if [[ "$comm" == *"bash"* ]]; then
-            echo "$pid $comm"
-        fi
-    fi
-done
+#displays the PID, along with the process name, of processes whose name contain the word bash
+pgrep -l 'bash'
