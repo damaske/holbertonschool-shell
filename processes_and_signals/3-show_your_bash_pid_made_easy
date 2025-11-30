@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
-for p in /proc/[0-9]*/comm; do
-    name=$(cat "$p" 2>/dev/null)
-    if echo "$name" | grep -q "bash"; then
-        pid=$(basename "$(dirname "$p")")
-        echo "$pid $name"
+for pid_dir in /proc/[0-9]*; do
+    pid=${pid_dir##*/}
+    comm_file="/proc/$pid/comm"
+    if [[ -f "$comm_file" && -r "$comm_file" ]]; then
+        comm=$(cat "$comm_file" 2>/dev/null)
+        if [[ "$comm" == *"bash"* ]]; then
+            echo "$pid $comm"
+        fi
     fi
 done
