@@ -1,19 +1,9 @@
 #!/usr/bin/env bash
-#.
 
+echo $$ > /var/run/myscript.pid
 
-echo $$ > /tmp/myscript.pid
-
-trap 'echo "I hate the kill command"' SIGTERM
-
-trap 'echo "Y U no love me?!"' SIGINT
-
-trap 'rm -rf /var/run/myscript.pid' SIGQUIT
-
-
+trap 'rm -f /var/run/myscript.pid' SIGQUIT
 
 while true; do
-
-	echo "To infinity and beyond"
-
+    sleep 1
 done
