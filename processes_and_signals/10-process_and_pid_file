@@ -2,7 +2,7 @@
 #.
 
 
-echo $$ > /var/run/myscript.pid
+echo $$ > /tmp/myscript.pid
 
 trap 'echo "I hate the kill command"' SIGTERM
 
