@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# Displays PIDs and names of processes containing "bash"
+# shellcheck disable=SC2046
 
-grep bash /proc/*/comm 2>/dev/null | cut -d/ -f3 | while read pid; do
-    echo "$pid bash"
-done
+echo $(grep -l bash /proc/*/comm 2>/dev/null | cut -d/ -f3 | xargs -I{} echo "{} bash")
